@@ -1,0 +1,29 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{ctex}
+
+\begin{document}
+
+\section{Metropolis算法}
+
+在这一节中，我们提出了一种实际的方法来构造一个满足详细平衡条件（式3.45）的条件概率 $\omega\left(x^{\prime} \mid x\right)$，使得对于大值的 $n$，配置 $x_{n}$ 按照给定的概率分布 $\mathcal{P}_{\mathrm{eq}}(x)$ 分布。Metropolis及其合作者（Metropolis等人，1957年）引入了一种非常简单的方案，也非常通用，可以应用于许多不同的情况。后来，所谓的Metropolis算法被W. Keith Hastings（1970年）扩展到更一般的情况（经常也使用“Metropolis-Hastings算法”的名称）。作为第一步，我们将过渡概率 $\omega\left(x^{\prime} \mid x\right)$ 分成两部分：
+
+\[
+\omega\left(x^{\prime} \mid x\right)=T\left(x^{\prime} \mid x\right) A\left(x^{\prime} \mid x\right),
+\]
+
+其中 $T\left(x^{\prime} \mid x\right)$ 定义了一个试验概率，从当前配置 $x$ 中提出新的配置 $x^{\prime}$，$A\left(x^{\prime} \mid x\right)$ 是接受概率。在Metropolis及其合作者的原始工作中，试验概率被假定为对称的，即 $T\left(x^{\prime} \mid x\right)=T\left(x \mid x^{\prime}\right)$。然而，在算法的广义版本中，只要确保遍历性，就可以选择具有很大自由度的 $T\left(x^{\prime} \mid x\right)$。然后，为了定义满足详细平衡条件的马尔可夫过程，接受提议的配置 $x^{\prime}$ 的概率为：
+
+\[
+A\left(x^{\prime} \mid x\right)=\operatorname{Min}\left\{1, \frac{\mathcal{P}_{\mathrm{eq}}\left(x^{\prime}\right) T\left(x \mid x^{\prime}\right)}{\mathcal{P}_{\mathrm{eq}}(x) T\left(x^{\prime} \mid x\right)}\right\}.
+\]
+
+不失一般性，我们总是可以选择 $T(x \mid x)=0$，即我们永远不提议保持相同的配置。然而，$\omega(x \mid x)$ 可能是有限的，因为提议的移动可能会被拒绝。 $\omega(x \mid x)$ 的实际值由归一化条件确定：$\sum_{x^{\prime}} \omega\left(x^{\prime} \mid x\right)=1$。
+
+在大多数情况下（如Metropolis及其合作者的原始工作中），考虑对称试验概率 $T\left(x^{\prime} \mid x\right)=T\left(x \mid x^{\prime}\right)$ 是有用的。在这种情况下，接受概率简化为：
+
+\[
+A\left(x^{\prime} \mid x\right)=\operatorname{Min}\left\{1, \frac{\mathcal{P}_{\mathrm{eq}}\left(x^{\prime}\right)}{\mathcal{P}_{\mathrm{eq}}(x)}\right\}。
+\]
+
+\end{document}
